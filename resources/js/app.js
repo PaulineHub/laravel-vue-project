@@ -2,11 +2,11 @@ import './bootstrap';
 
 import { createApp } from "vue";
 import HelloVue from "./components/HelloVue.vue";
-import CounterVue from "./components/CounterVue.vue";
+import ContactFormVue from "./components/ContactFormVue.vue";
 
 createApp({
     components: {
         HelloVue,
-        CounterVue,
+        ContactFormVue,
     },
 }).mount("#app");

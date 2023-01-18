@@ -1,6 +1,9 @@
 <x-layout>
-    <h1>Contact</h1>
+    <header class="mt-4 mb-4">
+        <h1 >Contact</h1>
+    </header>
+    
     <div id="app">
-        <counter-vue />
+        <contact-form-vue />
     </div>
 </x-layout>

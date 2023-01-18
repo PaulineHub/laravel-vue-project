@@ -20,3 +20,6 @@ Route::get('/', function () {
 Route::get('/contact', function () {
     return view('page.contact');
 });
+
+Route::post('/contact/ajout', [ContactController::class, 'ajout'])
+    ->name('contact.ajout');
