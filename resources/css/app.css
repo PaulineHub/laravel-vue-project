@@ -1,0 +1,19 @@
+.section-couleur {
+    height: 100vh;
+}
+
+.couleur1 {
+    background-color: rgb(156, 180, 222);
+}
+
+.couleur2 {
+    background-color: rgb(222, 221, 196);
+}
+
+.couleur3 {
+    background-color: rgb(234, 208, 234);
+}
+
+.box {
+    opacity: 0;
+}

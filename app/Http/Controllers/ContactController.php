@@ -10,6 +10,6 @@ class ContactController extends Controller
     public function ajout(Request $request) 
     {   
         Contact::create($request->except(['_token']));
-        return redirect('contact');
+        return response()->json('ok');
     }
 }

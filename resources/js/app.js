@@ -1,12 +1,12 @@
 import './bootstrap';
 
 import { createApp } from "vue";
-import HelloVue from "./components/HelloVue.vue";
+import AccueilVue from "./components/AccueilVue.vue";
 import ContactFormVue from "./components/ContactFormVue.vue";
 
 createApp({
     components: {
-        HelloVue,
+        AccueilVue,
         ContactFormVue,
     },
 }).mount("#app");

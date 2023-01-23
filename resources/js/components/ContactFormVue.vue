@@ -9,6 +9,7 @@
             <textarea name="commentaire" id="commentaire" cols="30" rows="10" class="form-control" v-model="elInputMessage"></textarea>
         </div>
         <button class="btn btn-secondary mt-3" type="submit">Envoyer</button>
+        <span class="align-bottom mb-2" id="message"></span>
     </form>
 </template>
 
@@ -19,21 +20,17 @@ import { ref } from 'vue';
 let elInputNom = ref('');
 let elInputMessage = ref('');
 
-async function postMessage() {
-    let options = {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ nom: elInputNom.value, message: elInputMessage.value}),
-    };
-
-    await fetch(
-        `http://127.0.0.1:8000/contact/ajout`,
-        options
-    )
-        .then((response) => {
-            return response[1].json()
+async function postMessage() {  
+    axios.post('/contact/ajout', {
+        nom: elInputNom.value,
+        message: elInputMessage.value
+    })
+        .then((res) => {
+            if (res.data === 'ok') {
+                document.getElementById('message').innerHTML = 'Votre message a bien ete envoye.'
+            } 
+        }).catch(err => {
+            console.log(err)
         })
 }
 </script>
