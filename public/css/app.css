@@ -1,5 +1,10 @@
 .section-couleur {
-    height: 100vh;
+    margin-top: 100px;
+    margin-bottom: 200px;
+}
+
+.section-couleur div {
+    flex: 1;
 }
 
 .couleur1 {
@@ -8,6 +13,10 @@
 
 .couleur2 {
     background-color: rgb(222, 221, 196);
+    z-index: 2;
+    position: relative;
+    width: 500px;
+    padding: 10px;
 }
 
 .couleur3 {
@@ -16,4 +25,38 @@
 
 .box {
     opacity: 0;
+}
+
+.big-title {
+    padding-top: 200px;
+    font-size: 60px;
+}
+
+.gs_reveal {
+    opacity: 0;
+    visibility: hidden;
+    will-change: transform, opacity;
+}
+
+.ipsType_center {
+    text-align: center;
+}
+
+.section-parallax {
+    position: relative;
+}
+
+.img-absolute {
+    position: absolute;
+    top: -151px;
+    right: 0;
+    width: 60%;
+}
+
+.container {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1070px;
+    position: relative;
+    z-index: 1;
 }

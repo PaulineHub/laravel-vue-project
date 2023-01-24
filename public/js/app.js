@@ -19644,15 +19644,72 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
-    gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.registerPlugin(gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_1__.ScrollTrigger);
+    function animateFrom(elem, direction) {
+      direction = direction || 1;
+      var x = 0,
+        y = direction * 100;
+      if (elem.classList.contains("gs_reveal_fromLeft")) {
+        x = -100;
+        y = 0;
+      }
+      elem.style.transform = "translate(" + x + "px, " + y + "px)";
+      elem.style.opacity = "0";
+      gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.fromTo(elem, {
+        x: x,
+        y: y,
+        autoAlpha: 0
+      }, {
+        duration: 1.45,
+        x: 0,
+        y: 0,
+        autoAlpha: 1,
+        ease: "expo",
+        overwrite: "auto"
+      });
+    }
     document.addEventListener("DOMContentLoaded", function (event) {
-      gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.to(".box", {
-        scrollTrigger: ".box",
-        // start the animation when ".box" enters the viewport (once)
-        opacity: 1
+      gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.registerPlugin(gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_1__.ScrollTrigger);
+      gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.utils.toArray(".gs_reveal").forEach(function (elem) {
+        // hide(elem); // assure that the element is hidden when scrolled into view
+
+        gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_1__.ScrollTrigger.create({
+          trigger: elem,
+          markers: true,
+          onEnter: function onEnter() {
+            animateFrom(elem);
+          },
+          onEnterBack: function onEnterBack() {
+            animateFrom(elem, -1);
+          },
+          onLeave: function onLeave() {
+            hide(elem);
+          } // assure that the element is hidden when scrolled into view
+        });
+      });
+
+      gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.to(".pContent", {
+        yPercent: -100,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".pSection",
+          // start: "top bottom", // the default values
+          // end: "bottom top",
+          scrub: true
+        }
+      });
+      gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.to(".pImage", {
+        yPercent: 50,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".pSection",
+          // start: "top bottom", // the default values
+          // end: "bottom top",
+          scrub: true
+        }
       });
     });
     var __returned__ = {
+      animateFrom: animateFrom,
       get gsap() {
         return gsap__WEBPACK_IMPORTED_MODULE_0__.gsap;
       },
@@ -19758,19 +19815,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _images_cactus7_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../images/cactus7.jpg */ "./resources/images/cactus7.jpg");
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", {
-  "class": "section-couleur couleur1"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "Accueil 1")], -1 /* HOISTED */);
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", {
-  "class": "section-couleur couleur2 box"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Accueil 2")], -1 /* HOISTED */);
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", {
-  "class": "section-couleur couleur3 box"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Accueil 3")], -1 /* HOISTED */);
 
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<h1 class=\"text-center vh-100 big-title gs_reveal ipsType_center\">Bienvenues</h1><section class=\"section-couleur couleur1 d-sm-flex\"><div class=\"w-200 me-5 gs_reveal gs_reveal_fromLeft\"><img src=\"" + _images_cactus7_jpg__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"\" class=\"img-fluid\"></div><div class=\"pt-5 pe-5\"><h2 class=\"gs_reveal\">Titre 1</h2><p class=\"gs_reveal\">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dolores officia ea, perspiciatis enim dolore suscipit vero exercitationem, laudantium et, maxime magni sequi! Accusantium ipsa voluptatum quia dolorem laboriosam corrupti.</p></div></section><section class=\"section-parallax pSection\"><div class=\"w-200 img-absolute pImage\"><img src=\"" + _images_cactus7_jpg__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" alt=\"\" class=\"img-fluid\"></div><div class=\"container\"><div class=\"couleur2 pContent\"><h2>Titre 2</h2><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto dolores officia ea, perspiciatis enim dolore suscipit vero exercitationem, laudantium et, maxime magni sequi! Accusantium ipsa voluptatum quia dolorem laboriosam corrupti.</p></div></div></section>", 3);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, _hoisted_2, _hoisted_3], 64 /* STABLE_FRAGMENT */);
+  return _hoisted_1;
 }
 
 /***/ }),
@@ -19902,6 +19952,21 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
 //     enabledTransports: ['ws', 'wss'],
 // });
+
+/***/ }),
+
+/***/ "./resources/images/cactus7.jpg":
+/*!**************************************!*\
+  !*** ./resources/images/cactus7.jpg ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/cactus7.jpg?40ddd231ae342a72895acb64c00d1e83");
 
 /***/ }),
 
